@@ -1,0 +1,80 @@
+object PersonForm: TPersonForm
+  Left = 0
+  Top = 0
+  Caption = 'Person Form'
+  ClientHeight = 506
+  ClientWidth = 714
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBGrid1: TDBGrid
+    Left = 24
+    Top = 16
+    Width = 320
+    Height = 120
+    DataSource = DataSource1
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object DBEdit1: TDBEdit
+    Left = 223
+    Top = 176
+    Width = 121
+    Height = 21
+    DataSource = DataSource1
+    TabOrder = 1
+  end
+  object DBEdit2: TDBEdit
+    Left = 223
+    Top = 232
+    Width = 121
+    Height = 21
+    DataSource = DataSource1
+    TabOrder = 2
+  end
+  object DataSource1: TDataSource
+    DataSet = SelPersonProc
+    Left = 416
+    Top = 320
+  end
+  object ADOConnection1: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=SQLNCLI11.1;Persist Security Info=False;User ID=sa;Init' +
+      'ial Catalog=PersonDB;Data Source=SAMYAK;Initial File Name="";Ser' +
+      'ver SPN=""'
+    LoginPrompt = False
+    Provider = 'SQLNCLI11.1'
+    Left = 488
+    Top = 200
+  end
+  object SelPersonProc: TADOStoredProc
+    Connection = ADOConnection1
+    ProcedureName = 'apspsPerson;1'
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+      end
+      item
+        Name = '@pcode'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+      end>
+    Left = 480
+    Top = 360
+  end
+end
